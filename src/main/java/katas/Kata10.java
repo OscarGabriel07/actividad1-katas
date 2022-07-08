@@ -58,7 +58,7 @@ public class Kata10 {
         List<Map> videos = DataUtil.getVideos();
 
          return lists.stream()
-                .map(elementList -> Map.of("name", elementList.get("name"), "videos", videos.stream()
+                .map(elementList -> ImmutableMap.of("name", elementList.get("name"), "videos", videos.stream()
                         .filter(elementVideo ->  elementList.get("id").equals(elementVideo.get("listId")))
                         .map(elementVideo -> ImmutableMap.of("id", elementVideo.get("id"), "title", elementVideo.get("title")))
                         .collect(Collectors.toList())
