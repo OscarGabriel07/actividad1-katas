@@ -70,9 +70,9 @@ public class Kata11 {
                         .filter(elementVideo -> elementList.get("id").equals(elementVideo.get("listId")))
                         .map(elementVideo -> ImmutableMap.of("id", elementVideo.get("id"), "title", elementVideo.get("title"), "time", bookmarkList.stream()
                                 .filter(elementBookMark -> elementVideo.get("id").equals(elementBookMark.get("videoId")))
-                                .map(elementBookMark -> elementBookMark.get("time")), "boxart", boxArts.stream()
+                                .reduce((x, y) -> x).get().get("time"), "boxart", boxArts.stream()
                                 .filter(elementBoxArt -> elementVideo.get("id").equals(elementBoxArt.get("videoId")))
-                                .map(elementBoxArt -> elementBoxArt.get("url"))))
+                                .reduce((x, y) -> x).get().get("url")))
                         .collect(Collectors.toList())))
                 .collect(Collectors.toList());
 
